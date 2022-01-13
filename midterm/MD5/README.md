@@ -1,4 +1,20 @@
 # MD5
+
+---
+
+* 此程式非原創:
+* 參考資料:
+>* [wikipedia的MD5](https://zh.wikipedia.org/wiki/MD5)
+>* [其他MD5的參考資料](https://www.010tools.com/MD5)
+>* [MD5的參考程式-1](https://github.com/Zunawe/md5-c)
+>* [MD5的參考程式-2](https://datatracker.ietf.org/doc/html/rfc1321)
+
+* 我主要將在網路破解的區域中演算法將其理解便寫成報告
+* 程式是完全看[其他MD5的參考資料](https://www.010tools.com/MD5)並將其理解並且上網查資料，寫成報告
+* 並寫依照程式進行測試
+* 其他進行網路攻防之實作在其他地方+
+---
+* MD5
 * 加密演算法
 * 可產生128bits的位元(16bytes)的雜湊值
 * 可資訊傳播完整性
