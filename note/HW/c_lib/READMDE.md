@@ -3,6 +3,7 @@
 >* 本作品為自己寫的作品
 >* 其中程式部分參考了鍾誠老師的risc2vos裡面的[printf.c](https://github.com/riscv2os/riscv2os/blob/master/xv6/kernel/printf.c)結合上課交的方式來寫
 >* 使用了 `#include <stdio.h>`和`#include <stdarg.h>`來協助撰寫
+>* 目前myassert&mymemcpy並未完全完成
 
 ---
 
