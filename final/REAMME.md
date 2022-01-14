@@ -133,7 +133,7 @@
     ```  
 
 * MainWindowTest 的單元測試
-    * 這邊主要是確認pyton 3.7.3已經在我們城市中測試正確
+    * 這邊主要是確認pyton 3.7.3已經在我們程式中測試正確
 ```C#
 [TestMethod()]
     public void MainWindowTest()
