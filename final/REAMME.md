@@ -192,6 +192,14 @@
 * 執行後
 ![](picture/have.jpg)
 
+---
+
+## 參考資料
+Python.Included - https://github.com/henon/Python.Included
+
+pytube - https://github.com/pytube/pytube
+
+UI Automation - https://docs.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-overview?redirectedfrom=MSDN
 
 
 
