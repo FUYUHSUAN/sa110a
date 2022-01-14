@@ -17,34 +17,41 @@
 
 2. 接下來，我fork美亞所創造的專案[FUYUHSUAN/PyTubeC-](https://github.com/FUYUHSUAN/PyTubeC-?organization=FUYUHSUAN&organization=FUYUHSUAN)，並且在我自己所fork的專案在vscode上來git clone https://github.com/FUYUHSUAN/PyTubeC-.git
 
-3. 我們會用line來溝通甚麼時候誰做甚麼，以此來避免兩邊程式衝突
 
-4. 接下來美亞會`git push`及`git pull` 來進行程式的撰寫
+3. 接下來美亞會`git push`及`git pull` 來進行程式的撰寫
 
-5. 而我則會需要當美亞`git pull` 之後進行`git fetch upstream`或是`git fetch + 原始我fork的網址`來進行即是更新
+4. 而我則會需要當美亞`git pull` 之後進行`git fetch upstream`或是`git fetch + 原始我fork的網址`來進行即是更新
 
-6. 當我製作完專案後我需要進行測試，然後將專案git push 上去，接下去給個pull request給美亞
+5. 當我製作完專案後我需要進行測試，然後將專案git push 上去，接下去給個pull request給美亞
 
-7. 當美亞先測試完之後，就會將專案進行merge
+6. 當美亞先測試完之後，就會將專案進行merge
 
-8. 我們的專案便以此為模式進行數輪
+7. 我們的專案便以此為模式進行數輪
 
 ---
 
 ### 工作分配
 
 * 魏美亞: 
-    * python引入C#
+    * 設定環境
+        a. 創造測試環境
+        b. 安裝函式庫
+        c. 將python導入C#
+        d. 測試python環境
     * 設計UI介面
-    * 並且進行測試python引入C#之測試
-    * 進行單元及group測試
-    * ppt整體流程的掌握及設計
+    * 管理Github main branch
+        a. 允許pull request
+        b. 測試每個pull request
 * 傅于軒: 
-    * 進行python套件pytube引入
-    * 撰寫讀取檔案，並且下載youtube到想存取之資料夾功能
-    * 進行套件及，後面所寫的程式進行測試
-    * 進行單元及group測試
-    * ppt內部流程圖，圖片製作
+    * 安裝及引用模組
+        a. 安裝及引用python模組
+        b. 測試並確認所有模組已順利安裝完成
+    * 程式功能
+        a. 寫按鈕下載鍵之功能
+        b. 測試下載影片之函式
+        c. 寫讓使用者可以存放資料夾之程式 
+        d. 測試打開資料夾之函式
+    * 做單元測試
 
 
     ![](picture/workflow.jpg)
@@ -123,8 +130,48 @@
         string filepath = $"{MainWindow.recordpath}/周杰倫 Jay Chou【稻香 Rice Field】-Official Music Video.mp4";
         Assert.IsTrue(File.Exists(filepath), "The video have not been downloaded yet!");
     }
-    ```   
+    ```  
 
+* MainWindowTest 的單元測試
+    * 這邊主要是確認pyton 3.7.3已經在我們城市中測試正確
+```C#
+[TestMethod()]
+    public void MainWindowTest()
+    {
+        MainWindow.startPy();
+        using (var sw = new StringWriter())
+        {
+            Console.SetOut(sw);
+            MainWindow.pyVersion();
+
+            var resVer = sw.ToString().Trim();
+            StringAssert.Contains(resVer, "3.7.3");
+        }
+
+        bool resInit = MainWindow.pyInit;
+        Assert.IsTrue(resInit);
+    }
+``` 
+* 這邊是確認pyton model pytube 是否順利引入
+    ```C#
+    PyObject dummy;
+    [TestMethod()]
+        public void libraryTest()
+        {
+            MainWindow.startPy();
+            Assert.IsNotNull(MainWindow.pytube);
+        }
+    ```
+
+* 這邊是確認使否順利下載，及存到指定位置
+    ```C#
+    [TestMethod()]
+        public void videoTest()
+        {
+            string filepath = $"{MainWindow.recordpath}/周杰倫 Jay Chou【稻香 Rice Field】-Official Music Video.mp4";
+            Assert.IsTrue(File.Exists(filepath), "The video have not been downloaded yet!");
+        }
+    ```
 ---     
 
 ## 前端介面
@@ -133,6 +180,11 @@
 ![](picture/youtube.jpg)
 
 ---
+
+## 預見的問題
+1. 在一開始的時後，沒有做過Vistual Studio的測試，所以我們花了一些時間去了解該如何進行測試，在測試時會需要知道該使用甚麼來進行測試，例如IsTrue,IsNotNull...這些該使用哪種進行測試，最後也順利經過討論及查資料找出了正確的使用方法
+
+2. 在push 上去時候遇到中英文的問題，以後在這種要跨語言合作時會使用國際語言或使較多人使用之語言進行合作，避免衝突
 
 ## 執行結果
 * 執行前
